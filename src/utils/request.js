@@ -24,8 +24,9 @@ instance.interceptors.request.use(config => {
     // 2. 判断是否有token
     if(profile.token){
         // 3. 设置token 
-        config.headers.Authorization = `Bearer${profile.token}`
+        config.headers.Authorization = `Bearer ${profile.token}`
     }
+    return config
 }, err => {
     return Promise.reject(err)
 })
@@ -48,7 +49,7 @@ instance.interceptors.response.use(res => res.data, err => {
 })
 
 // 请求工具函数
-export default ( url, method, submitData) => {
+export default (url, method, submitData) => {
     //  负责发请求： 请求地址 ，请求方式 ，提交的数据
     return instance({
         url,
