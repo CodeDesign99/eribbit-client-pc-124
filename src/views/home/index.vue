@@ -1,5 +1,7 @@
 <template>
-  <div class="container">HomePage</div>
+  <div class="container">
+    HomePage
+  </div>
 </template>
 
 <script>
@@ -8,4 +10,10 @@ export default {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+@import "../../assets/styles/mixins.less";
+.container {
+  .hoverShadow();
+  color: @xtxColor;
+}
+</style>
