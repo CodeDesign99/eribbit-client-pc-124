@@ -1,8 +1,4 @@
-<template>
-  <div class="container">
-    HomePage
-  </div>
-</template>
+<template> </template>
 
 <script>
 export default {
@@ -12,8 +8,4 @@ export default {
 
 <style scoped lang="less">
 @import "../../assets/styles/mixins.less";
-.container {
-  .hoverShadow();
-  color: @xtxColor;
-}
 </style>
