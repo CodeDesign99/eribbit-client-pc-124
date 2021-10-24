@@ -6,6 +6,7 @@
   <!-- 内容容器 -->
   <main class="app-body">
     <!-- 二级路由 -->
+    <RouterView />
   </main>
   <!-- 底部组件 -->
   <AppFooter />
@@ -14,12 +15,18 @@
 import AppNavbar from "@/components/app-navbar";
 import AppHeader from "@/components/app-header";
 import AppFooter from "@/components/app-footer";
+import { useStore } from "vuex";
 export default {
   name: "Layout",
   components: {
     AppNavbar,
     AppHeader,
     AppFooter
+  },
+  // 获取分类数据
+  setup() {
+    const store = useStore();
+    store.dispatch("category/getList");
   }
 };
 </script>
