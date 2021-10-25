@@ -10,6 +10,17 @@ module.exports = {
         path.join(__dirname,'./src/assets/styles/variables.less'),
         path.join(__dirname,'./src/assets/styles/mixins.less'),
       ]
-    }
+    },
+  },
+  configureWebpack:{
+      module: {
+          rules: [
+              {
+                  test: /\.mjs$/,
+                  include: /node_modules/,
+                  type: "javascript/auto"
+              },
+          ]
+      }
   }
 }
