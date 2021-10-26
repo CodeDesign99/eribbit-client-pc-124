@@ -16,6 +16,16 @@
             >{{ sub.name }}</RouterLink
           >
         </template>
+        <!-- 骨架组件 -->
+        <template v-else>
+          <XtxSkeleton
+            width="60px"
+            height="18px"
+            bg="rgba(255,255,255,.2)"
+            style="margin-right:5px"
+          />
+          <XtxSkeleton width="50px" height="18px" bg="rgba(255,255,255,.2)" />
+        </template>
       </li>
     </ul>
     <!-- 弹层 -->
@@ -219,6 +229,17 @@ export default {
     .layer {
       display: block;
     }
+  }
+}
+.xtx-skeleton {
+  animation: fade 1s linear infinite alternate;
+}
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
