@@ -94,6 +94,7 @@ export default {
   &.open {
     height: 132px;
     opacity: 1;
+    z-index: 999;
   }
   ul {
     display: flex;
