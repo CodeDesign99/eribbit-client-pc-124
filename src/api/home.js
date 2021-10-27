@@ -17,3 +17,11 @@ export const findBrand = (limit = 6) => {
 export const findBanner = () => {
     return request('/home/banner','get')
 }
+
+/**
+ * 获取新鲜好物数据
+ * @returns Promise
+ */
+export const findNew = () => {
+    return request('/home/new','get')
+}
