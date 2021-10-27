@@ -9,17 +9,22 @@
     </div>
   </div>
   <!-- 新鲜好物 -->
+  <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+    <template #right><XtxMore path="/"/></template>
+  </HomePanel>
   <!-- 人气推荐 -->
 </template>
 
 <script>
 import HomeCategory from "@/views/home/components/home-category";
 import HomeBanner from "@/views/home/components/home-banner";
+import HomePanel from "@/views/home/components/home-panel";
 export default {
   name: "HomePage",
   components: {
     HomeCategory,
-    HomeBanner
+    HomeBanner,
+    HomePanel
   }
 };
 </script>
