@@ -14,7 +14,8 @@
       </template>
       <div class="box">
         <RouterLink class="cover" :to="`/category/sub/${cate.id}`">
-          <img :src="cate.picture" alt="" />
+          <!-- v-lazy 自定义指令 -->
+          <img v-lazy="cate.picture" alt="" />
           <strong class="label">
             <span>{{ cate.name }}</span>
             <span>{{ cate.saleInfo }}</span>
