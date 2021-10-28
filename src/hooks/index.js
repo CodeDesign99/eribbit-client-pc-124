@@ -21,6 +21,11 @@ export const useLazyData = (target, apiFn) => {
                 result.value = data.result
             })
         }
+      },
+      // 配置选项
+      { 
+        // 可视区与元素相交的比例
+        threshold: 0
       }
     )
     return result
