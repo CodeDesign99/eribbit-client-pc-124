@@ -2,6 +2,12 @@
 import { h } from "vue";
 export default {
   name: "XtxBread",
+  props: {
+    separatorClass: {
+      type: String,
+      default: "icon-angle-right"
+    }
+  },
   render() {
     // 用法：
     // 1. vue2.0 的h函数是传参进来的，vue3.0是需要导入进来的
@@ -14,31 +20,22 @@ export default {
     // 4. 遍历插槽中的item，得到一个动态创建的节点，最后一个item不加i标签
     // 5. 把动态创建的节点渲染在xtx-bread标签中
     const items = this.$slots.default();
-    const dymanicItem = [];
+    const dymanicItems = [];
     items.forEach((item, i) => {
-      dymanicItem.push(item);
+      dymanicItems.push(item);
       if (i < items.length - 1) {
-        dymanicItem.push(h("i", { class: "iconfont icon-angle-right" }));
+        dymanicItems.push(h("i", { class: `iconfont ${this.separatorClass}` }));
       }
     });
-    return h("div", { class: "xtx-bread" }, dymanicItem);
+    return h("div", { class: "xtx-bread" }, dymanicItems);
   }
 };
 </script>
-<style lang="less">
-// 去除scoped 起作用是为了作用到xtx-bread.vue组件
+
+<style lang="less" scoped>
 .xtx-bread {
   display: flex;
   padding: 25px 10px;
-  &-item {
-    a {
-      color: #666;
-      transition: all 0.4s;
-      &:hover {
-        color: @xtxColor;
-      }
-    }
-  }
   i {
     font-size: 12px;
     margin-left: 5px;

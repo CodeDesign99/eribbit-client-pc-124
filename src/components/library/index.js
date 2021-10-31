@@ -5,8 +5,8 @@
 import XtxSkeleton from './xtx-skeleton.vue'
 import XtxCarousel from './xtx-carousel.vue'
 import XtxMore from './xtx-more.vue'
-import XtxBread from './xtx-bread.vue'
-import XtxBreadItem from './xtx-bread-item.vue'
+import XtxBread from './xtx-bread'
+import XtxBreadItem from './xtx-bread-item'
 import defaultImg from '@/assets/images/200.png'
 
 export default {

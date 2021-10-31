@@ -1,17 +1,15 @@
 <template>
-  <div class="sub-category">
-    <div class="container">
-      <!-- 面包屑 -->
-      <XtxBread>
-        <XtuBreadItem>首页</XtuBreadItem>
-        <XtuBreadItem>电器</XtuBreadItem>
-        <XtuBreadItem>空调</XtuBreadItem>
-      </XtxBread>
-      <!-- 轮播图 -->
-      <!-- 全部分类 -->
-      <!-- 各个分类下推荐商品 -->
-    </div>
+  <div class="container">
+    <!-- 面包屑 -->
+    <XtxBread separator-class="icon-angle-right">
+      <XtxBreadItem to="/">首页</XtxBreadItem>
+      <XtxBreadItem to="/category/10000">电器</XtxBreadItem>
+      <XtxBreadItem>空调</XtxBreadItem>
+    </XtxBread>
   </div>
+  <!-- 轮播图 -->
+  <!-- 全部分类 -->
+  <!-- 各个分类下推荐商品 -->
 </template>
 
 <script>
