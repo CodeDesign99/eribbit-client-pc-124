@@ -4,12 +4,12 @@
       <!-- 渲染面包屑导航 -->
       <XtxBread>
         <XtxBreadItem to="/">首页</XtxBreadItem>
-        <XtxBreadItem v-if="topCategory">{{ topCategory.name }}</XtxBreadItem>
+        <XtxBreadItem>{{ topCategory.name }}</XtxBreadItem>
       </XtxBread>
       <!-- 轮播图 -->
       <XtxCarousel :sliders="sliders" style="height:500px" />
       <!-- 所有二级分类 -->
-      <div class="sub-list" v-if="topCategory && topCategory.children">
+      <div class="sub-list">
         <h3>全部分类</h3>
         <ul>
           <li v-for="sub in topCategory.children" :key="sub.id">
@@ -45,10 +45,13 @@ export default {
     const store = useStore();
     const route = useRoute();
     const topCategory = computed(() => {
+      let cate = {};
       // 当前顶级分类 === 根据路由上的ID去vuex中category模块的list中查找
-      return store.state.category.list.find(item => {
+      const item = store.state.category.list.find(item => {
         return item.id === route.params.id;
       });
+      if (item) cate = item;
+      return cate;
     });
 
     return { sliders, topCategory };
