@@ -6,7 +6,10 @@
       <!-- 筛选区 -->
       <SubFilter />
       <!-- 复选框 -->
-      <XtxCheckbox v-model="isAllChecked">全选</XtxCheckbox>{{ isAllChecked }}
+      <!-- <XtxCheckbox v-model="isAllChecked">全选</XtxCheckbox>{{ isAllChecked }} -->
+      <div class="goods-list">
+        <SubSort />
+      </div>
     </div>
   </div>
 </template>
@@ -15,10 +18,14 @@
 import { ref } from "vue-demi";
 import SubBread from "./components/sub-bread";
 import SubFilter from "./components/sub-filter";
-// import XtxCheckBox from "@/components/xtx-checkbox";
+import SubSort from "./components/sub-sort";
 export default {
   name: "SubCategory",
-  components: { SubBread, SubFilter },
+  components: {
+    SubBread,
+    SubFilter,
+    SubSort
+  },
   setup() {
     const isAllChecked = ref(true);
     return { isAllChecked };
@@ -26,4 +33,10 @@ export default {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.goods-list {
+  background: #fff;
+  padding: 0 25px;
+  margin-top: 25px;
+}
+</style>
