@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
 import { useVModel } from "@vueuse/core";
 // v-model ==> :modelValue + @update:modelValue
 export default {
