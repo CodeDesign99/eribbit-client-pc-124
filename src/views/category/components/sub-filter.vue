@@ -5,8 +5,8 @@
       <div class="head">品牌：</div>
       <div class="body">
         <a
-          @click="filterData.brands.selectedBrand = item.id"
-          :class="{ active: item.id === filterData.brands.selectedBrand }"
+          @click="changeBrand(item.id)"
+          :class="{ active: item.id === filterData.selectedBrand }"
           href="javascript:;"
           v-for="item in filterData.brands"
           :key="item.id"
@@ -19,7 +19,7 @@
       <div class="head">{{ item.name }}：</div>
       <div class="body">
         <a
-          @click="item.selectedProp = prop.id"
+          @click="changeProp(item, prop.id)"
           :class="{ active: prop.id === item.selectedProp }"
           href="javascript:;"
           v-for="prop in item.properties"
@@ -45,7 +45,7 @@ import xtxSkeleton from "@/components/library/xtx-skeleton.vue";
 export default {
   components: { xtxSkeleton },
   name: "SubFilter",
-  setup() {
+  setup(props, { emit }) {
     const route = useRoute();
     // 监听二级类目ID的变化获取筛选数据
     const filterData = ref(null);
@@ -58,7 +58,7 @@ export default {
           filterLoading.value = true;
           // 发送请求
           findSubCategoryFilter(route.params.id).then(({ result }) => {
-            result.brands.selectedBrand = null;
+            result.selectedBrand = null;
             result.brands.unshift({ id: null, name: "全部" });
             result.saleProperties.forEach(item => {
               item.selectedProp = null;
@@ -71,7 +71,38 @@ export default {
       },
       { immediate: true }
     );
-    return { filterData, filterLoading };
+    // 获取筛选参数
+    const getFilterParams = () => {
+      const obj = { brandId: null, attrs: [] };
+      // 品牌
+      obj.brandId = filterData.value.selectedBrand;
+      // 销售属性
+      filterData.value.saleProperties.forEach(item => {
+        if (item.selectedProp) {
+          const prop = item.properties.find(
+            prop => prop.id === item.selectedProp
+          );
+          obj.attrs.push({ groupName: item.name, propertyName: prop.name });
+        }
+      });
+      if (obj.attrs.length === 0) obj.attrs = null;
+      return obj;
+    };
+
+    // 1. 记录当前选择的品牌
+    const changeBrand = brandId => {
+      if (filterData.value.selectedBrand === brandId) return;
+      filterData.value.selectedBrand = brandId;
+      emit("filter-change", getFilterParams());
+    };
+    // 2. 记录选择的销售属性
+    const changeProp = (item, propId) => {
+      if (item.selectedProp === propId) return;
+      item.selectedProp = propId;
+      emit("filter-change", getFilterParams());
+    };
+
+    return { filterData, filterLoading, changeBrand, changeProp };
   }
 };
 </script>
